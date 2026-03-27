@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Priyanti Dassanayake — Academic & Practitioner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1714;
+    --paper: #f5f0e8;
+    --cream: #ede7d6;
+    --gold: #b8963e;
+    --gold-light: #d4b060;
+    --rule: #c8b89a;
+    --muted: #7a6e60;
+    --accent: #2c4a3e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-monogram {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10rem 4rem 6rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+  }
+
+  .hero-name em { font-style: italic; color: var(--accent); }
+
+  .hero-rule {
+    width: 3rem; height: 1px;
+    background: var(--gold);
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 38ch;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s ease forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s ease forwards;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 2rem;
+    background: var(--accent);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+
+  .btn-secondary {
+    padding: 0.75rem 2rem;
+    background: transparent;
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.5s ease forwards;
+  }
+
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, var(--cream) 0%, var(--paper) 60%),
+      repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(184,150,62,0.04) 30px, rgba(184,150,62,0.04) 31px);
+  }
+
+  .hero-credential-stack {
+    position: absolute;
+    bottom: 4rem;
+    left: 3rem; right: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .credential-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(245,240,232,0.85);
+    border-left: 2px solid var(--gold);
+    backdrop-filter: blur(4px);
+  }
+
+  .credential-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 3rem;
+  }
+
+  .credential-text strong { display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; color: var(--ink); }
+  .credential-text span { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
+
+  .hero-vertical-text {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rule);
+    white-space: nowrap;
+  }
+
+  section { padding: 6rem 0; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .section-rule { width: 2.5rem; height: 1px; background: var(--gold); margin-bottom: 3rem; }
+
+  #about { background: var(--ink); color: var(--paper); }
+  #about .section-title { color: var(--paper); }
+  #about .section-rule { background: var(--gold); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+  .about-body p { font-size: 1rem; line-height: 1.85; color: rgba(245,240,232,0.82); margin-bottom: 1.25rem; }
+  .about-body p strong { color: var(--gold-light); font-weight: 700; }
+
+  .about-stats { display: flex; flex-direction: column; gap: 2rem; padding-top: 1rem; }
+
+  .stat-block { border-top: 1px solid rgba(200,184,154,0.25); padding-top: 1.5rem; }
+
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold-light); line-height: 1; }
+
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,240,232,0.5); margin-top: 0.25rem; }
+
+  #academic { background: var(--paper); }
+
+  .academic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  .teaching-entries { display: flex; flex-direction: column; }
+
+  .teaching-entry { padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
+  .teaching-entry:first-child { border-top: 1px solid var(--rule); }
+
+  .entry-meta { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .entry-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+  .entry-sub { font-size: 0.85rem; color: var(--muted); font-style: italic; }
+  .entry-detail { font-size: 0.85rem; color: var(--ink); margin-top: 0.5rem; line-height: 1.6; }
+
+  .outcome-tag {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.2rem 0.65rem;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .subjects-panel { background: var(--cream); padding: 2.5rem; }
+
+  .subjects-panel h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 1.5rem; }
+
+  .subject-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .subject-list li { font-size: 0.9rem; color: var(--ink); padding-left: 1.2rem; position: relative; line-height: 1.5; }
+  .subject-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-family: 'DM Mono', monospace; font-size: 0.8rem; }
+
+  .qaa-box { margin-top: 2rem; padding: 1.25rem; border-left: 3px solid var(--gold); background: rgba(184,150,62,0.06); }
+  .qaa-box p { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; line-height: 1.6; }
+
+  #research { background: var(--cream); }
+
+  .research-layout { display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; }
+
+  .phd-block { margin-bottom: 3rem; }
+  .phd-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; font-weight: 400; color: var(--ink); margin-bottom: 0.75rem; line-height: 1.4; }
+  .phd-block .institution { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .phd-block p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+
+  .publications-list { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .pub-item { padding: 1.25rem; background: var(--paper); border-top: 2px solid var(--gold); }
+  .pub-item p { font-size: 0.85rem; color: var(--ink); line-height: 1.6; font-style: italic; }
+  .pub-item .pub-venue { display: block; margin-top: 0.4rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+
+  .specialisms-panel h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 1.5rem; }
+
+  .specialism-tag { display: inline-block; padding: 0.4rem 0.9rem; margin: 0.25rem 0.25rem 0.25rem 0; border: 1px solid var(--rule); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: var(--paper); }
+
+  #industry { background: var(--ink); color: var(--paper); }
+  #industry .section-title { color: var(--paper); }
+
+  .industry-intro { max-width: 55ch; font-size: 1rem; color: rgba(245,240,232,0.75); line-height: 1.85; margin-bottom: 3.5rem; }
+  .industry-intro strong { color: var(--gold-light); }
+
+  .roles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3.5rem; }
+
+  .role-card { padding: 1.75rem; border: 1px solid rgba(200,184,154,0.2); position: relative; overflow: hidden; transition: border-color 0.3s; }
+  .role-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+  .role-card:hover { border-color: rgba(200,184,154,0.5); }
+  .role-card:hover::before { transform: scaleX(1); }
+
+  .role-period { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .role-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--paper); margin-bottom: 0.2rem; }
+  .role-company { font-size: 0.8rem; color: rgba(245,240,232,0.5); font-style: italic; margin-bottom: 0.75rem; }
+  .role-desc { font-size: 0.82rem; color: rgba(245,240,232,0.65); line-height: 1.65; }
+
+  .tech-stack { padding: 2rem; border: 1px solid rgba(200,184,154,0.15); background: rgba(255,255,255,0.03); }
+  .tech-stack h3 { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tech-tag { padding: 0.3rem 0.75rem; border: 1px solid rgba(200,184,154,0.25); font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: rgba(245,240,232,0.6); text-transform: uppercase; }
+
+  #contact { background: var(--paper); padding: 7rem 0; }
+
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+
+  .contact-text p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+  .contact-link-item { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--ink); transition: color 0.2s; }
+  .contact-link-item:hover { color: var(--gold); }
+  .contact-link-item .cl-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); min-width: 4rem; }
+  .contact-link-item .cl-value { font-size: 0.9rem; }
+
+  .contact-availability { padding: 2.5rem; background: var(--accent); color: var(--paper); }
+
+  .avail-title { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.5rem; }
+
+  .avail-item { padding: 1rem 0; border-bottom: 1px solid rgba(245,240,232,0.1); display: flex; justify-content: space-between; align-items: center; }
+  .avail-item:last-of-type { border-bottom: none; }
+  .avail-role { font-size: 0.9rem; color: rgba(245,240,232,0.85); }
+  .avail-status { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.65rem; }
+  .status-open { background: rgba(184,150,62,0.25); color: var(--gold-light); border: 1px solid rgba(184,150,62,0.4); }
+
+  footer { background: var(--ink); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(200,184,154,0.15); }
+  footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; color: rgba(245,240,232,0.3); text-transform: uppercase; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 8rem 2rem 4rem; }
+    .about-grid, .academic-grid, .research-layout, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .roles-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-monogram">Dr P. Dassanayake</a>
+  <ul class="nav-links">
+    <li><a href="#about">Profile</a></li>
+    <li><a href="#academic">Academic</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#industry">Industry</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Senior Academic &amp; Practitioner · United Kingdom</p>
+    <h1 class="hero-name">Dr Priyanti<br><em>Dassanayake</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-title">Higher education leader and active senior engineer — combining doctoral research with over a decade of industry practice to deliver teaching that is current, rigorous, and outcome-driven.</p>
+    <div class="hero-ctas">
+      <a href="#academic" class="btn-primary">Academic Profile</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-credential-stack">
+      <div class="credential-item">
+        <div class="credential-num">PhD</div>
+        <div class="credential-text">
+          <strong>Doctor of Philosophy</strong>
+          <span>Computer Science · University of Leicester</span>
+        </div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-num">12+</div>
+        <div class="credential-text">
+          <strong>Years in Higher Education</strong>
+          <span>Lecturing, Module Lead &amp; Curriculum Design</span>
+        </div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-num">10+</div>
+        <div class="credential-text">
+          <strong>Years Industry Experience</strong>
+          <span>Senior Android Engineer · AI/ML Deployment</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-vertical-text">Academic · Researcher · Practitioner</div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="section-label">Profile</p>
+        <h2 class="section-title">Where scholarship<br>meets practice</h2>
+        <div class="section-rule"></div>
+        <div class="about-body">
+          <p>I am a Senior Lecturer, researcher, and active industry practitioner with over a decade of experience across higher education and technology. I hold a <strong>PhD in Computer Science</strong> from the University of Leicester and an MSc in Management Information Systems from the University of Hertfordshire.</p>
+          <p>My academic career spans curriculum design, module leadership, and quality assurance at institutions including Elizabeth School of London. I design and deliver structured, outcome-driven programmes that bridge academic rigour with employability — evidenced by measurable improvements in student progression and graduate outcomes.</p>
+          <p>Alongside my academic role, I maintain an active practice as a <strong>Senior Android Engineer</strong>, currently building scalable mobile systems using Kotlin and Jetpack Compose. This dual engagement ensures that my teaching reflects the realities of contemporary software development, bringing live industry standards into the classroom.</p>
+          <p>My research specialises in <strong>AI, deep learning, and edge deployment</strong> — areas in which I also consult, helping organisations move machine learning from research prototype to production-ready systems.</p>
+        </div>
+      </div>
+      <div class="about-stats reveal reveal-delay-2">
+        <div class="stat-block">
+          <div class="stat-num">90%</div>
+          <div class="stat-label">Student employability improvement through curriculum redesign</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Peer-reviewed publications in AI and machine learning</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Professional certifications — Java &amp; Microsoft</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Years combined academic and industry experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="academic">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Teaching &amp; Curriculum</p>
+      <h2 class="section-title">Academic Profile</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="academic-grid">
+      <div class="teaching-entries reveal">
+        <div class="teaching-entry">
+          <div class="entry-meta">2025 – 2026 · Elizabeth School of London</div>
+          <div class="entry-title">Module Lead</div>
+          <div class="entry-sub">Object-Oriented Programming &amp; Secure Website Development</div>
+          <div class="entry-detail">Led module delivery, assessment design, and student support for two core computing modules. Responsible for curriculum alignment with industry standards and QAA frameworks.</div>
+        </div>
+        <div class="teaching-entry">
+          <div class="entry-meta">2025 – 2026 · Elizabeth School of London</div>
+          <div class="entry-title">Assistant Lecturer</div>
+          <div class="entry-sub">Northampton</div>
+          <div class="entry-detail">Delivered lectures and seminars, provided academic guidance, and contributed to continuous assessment and student progression monitoring.</div>
+        </div>
+        <div class="teaching-entry">
+          <div class="entry-meta">2007 – 2009 · University of Kelaniya</div>
+          <div class="entry-title">Lecturer</div>
+          <div class="entry-sub">Information Technology</div>
+          <div class="entry-detail">Redesigned the System Implementation curriculum to improve industry alignment and student readiness.</div>
+          <span class="outcome-tag">+90% student employability improvement</span>
+        </div>
+        <div class="teaching-entry">
+          <div class="entry-meta">2007 – 2008 · University of Uva Wellassa</div>
+          <div class="entry-title">Lecturer</div>
+          <div class="entry-sub">Computer Science</div>
+          <div class="entry-detail">Delivered computer science programmes at undergraduate level within a newly established Sri Lankan university.</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="subjects-panel">
+          <h3>Areas of Teaching Expertise</h3>
+          <ul class="subject-list">
+            <li>Object-Oriented Programming (Java, Kotlin)</li>
+            <li>Secure Website Development</li>
+            <li>Mobile Application Development</li>
+            <li>System Implementation &amp; Software Engineering</li>
+            <li>Artificial Intelligence &amp; Machine Learning</li>
+            <li>Data Mining &amp; Information Systems</li>
+            <li>Management Information Systems</li>
+          </ul>
+          <div class="qaa-box">
+            <p>Curriculum design aligned to QAA subject benchmarks · Outcome-driven assessment frameworks · Student progression &amp; continuous improvement</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Research &amp; Scholarship</p>
+      <h2 class="section-title">Doctoral Research</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="research-layout">
+      <div>
+        <div class="phd-block reveal">
+          <div class="institution">University of Leicester · 2019–2024</div>
+          <h3>PhD, Computer Science</h3>
+          <p>Doctoral research focused on deep learning systems for real-world deployment — spanning explainable AI, autonomous control systems, and edge intelligence. The research addressed deploying complex neural architectures in resource-constrained, latency-sensitive environments, with applications in unmanned systems and reconfigurable networks. Conducted in partnership with the University of Derby and Rolls-Royce.</p>
+        </div>
+        <div class="publications-list reveal reveal-delay-1">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--ink);margin-bottom:1.25rem;">Selected Publications</h3>
+          <div class="pub-item">
+            <p>A Deep Learning Based Explainable Control System for Reconfigurable Networks of Edge Devices</p>
+            <span class="pub-venue">Peer-reviewed publication</span>
+          </div>
+          <div class="pub-item">
+            <p>A Deep Reinforcement Learning Based Homeostatic System for Unmanned Position Control</p>
+            <span class="pub-venue">Peer-reviewed publication</span>
+          </div>
+          <div class="pub-item">
+            <p>Identification of Factors Affecting the Implementation of New Medical Information Systems in Sri Lanka</p>
+            <span class="pub-venue">IADIS International Conference — e-Society 2008</span>
+          </div>
+        </div>
+      </div>
+      <div class="specialisms-panel reveal reveal-delay-2">
+        <h3>Research Specialisms</h3>
+        <div>
+          <span class="specialism-tag">Deep Learning</span>
+          <span class="specialism-tag">Explainable AI</span>
+          <span class="specialism-tag">Edge Intelligence</span>
+          <span class="specialism-tag">Reinforcement Learning</span>
+          <span class="specialism-tag">Autonomous Systems</span>
+          <span class="specialism-tag">On-device ML</span>
+          <span class="specialism-tag">TensorFlow Lite</span>
+          <span class="specialism-tag">Neural Architecture</span>
+          <span class="specialism-tag">Low-latency Inference</span>
+          <span class="specialism-tag">Information Systems</span>
+        </div>
+        <div style="margin-top:2.5rem;padding:1.5rem;background:var(--paper);border-left:2px solid var(--gold);">
+          <p style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">Industry Research Partnership</p>
+          <p style="font-size:0.85rem;color:var(--muted);line-height:1.7;">Doctoral research conducted in collaboration with <strong style="color:var(--ink);">Rolls-Royce</strong>, developing autonomous vessel positioning systems — replacing GPS-dependent decision support with fully self-correcting deep reinforcement learning architectures.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="industry">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Industry Practice</p>
+      <h2 class="section-title">Active practitioner,<br>not merely theorist</h2>
+      <div class="section-rule"></div>
+    </div>
+    <p class="industry-intro reveal">My continued engagement with industry is not supplementary to my academic work — it <strong>defines it</strong>. Students learn from a lecturer who is building production systems today, who understands current tooling, architecture constraints, and the realities of delivery under commercial pressure.</p>
+    <div class="roles-grid">
+      <div class="role-card reveal">
+        <div class="role-period">Jan 2026 – Present</div>
+        <div class="role-title">Senior Android Engineer</div>
+        <div class="role-company">MOPO · Remote Contract</div>
+        <div class="role-desc">Designing scalable Android architecture with Kotlin and Jetpack Compose. Integrating APIs and applying on-device AI/ML optimisation in a live production environment.</div>
+      </div>
+      <div class="role-card reveal reveal-delay-1">
+        <div class="role-period">Apr 2024 – Present</div>
+        <div class="role-title">Director / CTO &amp; CFO</div>
+        <div class="role-company">Zenfinvest · Derby, UK</div>
+        <div class="role-desc">Leading technical and financial strategy, overseeing product direction and technology infrastructure for a fintech venture.</div>
+      </div>
+      <div class="role-card reveal reveal-delay-2">
+        <div class="role-period">May 2021 – Apr 2024</div>
+        <div class="role-title">Android Developer</div>
+        <div class="role-company">Waymap</div>
+        <div class="role-desc">Developed navigation and accessibility-focused Android applications across the full mobile stack with a focus on performance, reliability, and user experience.</div>
+      </div>
+    </div>
+    <div class="tech-stack reveal">
+      <h3>Technical Competencies</h3>
+      <div class="tech-tags">
+        <span class="tech-tag">Kotlin</span>
+        <span class="tech-tag">Jetpack Compose</span>
+        <span class="tech-tag">Android NDK</span>
+        <span class="tech-tag">TensorFlow Lite</span>
+        <span class="tech-tag">Deep Reinforcement Learning</span>
+        <span class="tech-tag">Java</span>
+        <span class="tech-tag">Objective-C</span>
+        <span class="tech-tag">REST APIs</span>
+        <span class="tech-tag">Edge Deployment</span>
+        <span class="tech-tag">On-device Inference</span>
+        <span class="tech-tag">Mobile Architecture</span>
+        <span class="tech-tag">Cross-functional Team Leadership</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="reveal">
+        <p class="section-label">Get in Touch</p>
+        <h2 class="section-title">Open to the<br>right opportunity</h2>
+        <div class="section-rule"></div>
+        <p>I welcome enquiries regarding Senior Lecturer, Programme Lead, or Course Director positions, as well as collaborative research opportunities and Android engineering contracts.</p>
+        <div class="contact-links">
+          <a href="mailto:priyanthi_manjula@yahoo.com" class="contact-link-item">
+            <span class="cl-label">Email</span>
+            <span class="cl-value">priyanthi_manjula@yahoo.com</span>
+          </a>
+          <a href="https://www.linkedin.com/in/priyanthi" target="_blank" class="contact-link-item">
+            <span class="cl-label">LinkedIn</span>
+            <span class="cl-value">linkedin.com/in/priyanthi</span>
+          </a>
+          <a class="contact-link-item">
+            <span class="cl-label">Location</span>
+            <span class="cl-value">United Kingdom · Open to Remote</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-availability reveal reveal-delay-2">
+        <div class="avail-title">Current Availability</div>
+        <div class="avail-item">
+          <span class="avail-role">Senior Lecturer</span>
+          <span class="avail-status status-open">Open</span>
+        </div>
+        <div class="avail-item">
+          <span class="avail-role">Programme Lead / Course Director</span>
+          <span class="avail-status status-open">Open</span>
+        </div>
+        <div class="avail-item">
+          <span class="avail-role">Android Engineering Contract</span>
+          <span class="avail-status status-open">Open</span>
+        </div>
+        <div class="avail-item">
+          <span class="avail-role">AI/ML Research Collaboration</span>
+          <span class="avail-status status-open">Open</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Dr Priyanti Dassanayake · PhD, MSc, BSc</p>
+  <p>Senior Academic &amp; Practitioner · United Kingdom</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
